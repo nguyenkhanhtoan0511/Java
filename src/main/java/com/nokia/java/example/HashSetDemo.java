@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class HashSetDemo {
-
     public static void main(String[] args) {
         List list = Arrays.asList("one Two three Four five six one three Four".split(" "));
         System.out.println(list);
