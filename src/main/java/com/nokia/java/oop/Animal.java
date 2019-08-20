@@ -8,9 +8,9 @@ public abstract class Animal implements ISound{
         Male,
         Female
     }
-    int age;
-    String name;
-    TypeSex sex;
+    private int age;
+    private String name;
+    private TypeSex sex;
 
     public int getAge() {
         return age;
