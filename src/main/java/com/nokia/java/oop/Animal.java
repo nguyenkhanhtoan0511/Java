@@ -3,7 +3,7 @@ package com.nokia.java.oop;
 import java.util.Comparator;
 import java.util.List;
 
-public abstract class Animal implements ISound{
+public abstract class Animal implements ISound, Comparable<Animal> {
     enum TypeSex{
         Male,
         Female
@@ -47,23 +47,19 @@ public abstract class Animal implements ISound{
         return "age = " + age + " name = " + name + " sex = " + sex + "sound = "+ animalSound();
     }
 
-    public static Comparator<Animal> SortByAge = new Comparator<Animal>() {
-        @Override
-        public int compare(Animal a1, Animal a2) {
-            int ageAnimal1 = a1.getAge();
-            int ageAnimal2 = a2.getAge();
-            return ageAnimal1-ageAnimal2;
-        }
-    };
+    @Override
+    public int compareTo(Animal a){
+        return getName().compareTo(a.getName());
+    }
 
-    public static Comparator<Animal> SortByName = new Comparator<Animal>() {
-        @Override
-        public int compare(Animal a1, Animal a2) {
-            String nameAnimal1 = a1.getName();
-            String nameAnimal2 = a2.getName();
-            return nameAnimal1.compareTo(nameAnimal2);
-        }
-    };
+    @Override
+    public boolean equals(Object o) {
+        Animal a = (Animal) o;
+        return getName().equals(a.getName());
+    }
 
-
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }
