@@ -32,8 +32,6 @@ public class Car {
         if(o==null || getClass()!=o.getClass() ) return  false;
         Car car = (Car) o;
         return Objects.equals(color, car.color)&&Objects.equals(wheel, car.wheel);
-//        return Objects.equals(wheel, car.wheel);
-//        return Objects.equals(color, car.color);
     }
 
     @Override
