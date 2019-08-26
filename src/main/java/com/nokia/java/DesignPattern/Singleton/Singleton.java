@@ -1,4 +1,4 @@
-package com.nokia.java.DesignPattern;
+package com.nokia.java.DesignPattern.Singleton;
 
 public class Singleton {
     private static Singleton m_designPattern;
