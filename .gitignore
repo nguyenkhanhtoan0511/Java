@@ -2,3 +2,6 @@ target/
 Java.iml
 test.txt
 .idea/
+
+adapter
+docker_app.iml
