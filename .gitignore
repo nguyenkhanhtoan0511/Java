@@ -1,4 +1,6 @@
+
 **/target
+
 .idea/
-Java.iml
-docker_app/adapter
+
+*.iml
