@@ -1,17 +1,19 @@
 package com.nokia.hibernate.dao.impl;
 
-import com.nokia.hibernate.dao.EmployeeDAO;
-import com.nokia.hibernate.entity.Employee;
+import com.nokia.hibernate.dao.AuthorDAO;
+import com.nokia.hibernate.entity.Author;
+
 import com.nokia.hibernate.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
 
-public class EmployeeDAOImpl implements EmployeeDAO {
+public class AuthorDAOImpl implements AuthorDAO {
+
     private Session currentSession;
 
-    public EmployeeDAOImpl(){
+    public AuthorDAOImpl(){
     }
 
     public Session openCurrentSession(){
@@ -43,71 +45,69 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> findAll() {
+    public List<Author> findAll() {
         try {
-            Query query = getCurrentSession().createQuery("from Employee");
-            List<Employee> employees = query.list();
-            return employees;
+            Query query = getCurrentSession().createQuery("from Author");
+            List<Author> authors = query.list();
+            return authors;
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public Employee getEmployee(String firstName, String lastName) {
+    public Author getAuthor(String name) {
         try {
-            Query query = getCurrentSession().createQuery("from Employee where first_name = :firstName and last_name = :lastName");
-            query.setParameter("firstName", firstName);
-            query.setParameter("lastName", lastName);
-            List<Employee> models = query.list();
-            return (models != null && models.size() > 0 ) ? (Employee) models.get(0) : null;
+            Query query = getCurrentSession().createQuery("from Author where name = :name");
+            query.setParameter("name", name);
+            List<Author> models = query.list();
+            return (models != null && models.size() > 0 ) ? (Author) models.get(0) : null;
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public void add(Employee employee) {
+    public void add(Author author) {
         try {
-            getCurrentSession().save(employee);
+            getCurrentSession().save(author);
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public void update(Employee employee) {
+    public void update(Author author) {
         try {
-            getCurrentSession().update(employee);
+            getCurrentSession().update(author);
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public Employee findById(int id){
+    public Author findById(long id){
         try {
-            Employee employee = (Employee) getCurrentSession().get(Employee.class, id);
-            return  employee;
+            Author author = (Author) getCurrentSession().get(Author.class, id);
+            return  author;
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public void delete(Employee employee) {
+    public void delete(Author author) {
         try {
-            getCurrentSession().delete(employee);
+            getCurrentSession().delete(author);
         } catch (Throwable e) {
             throw e;
         }
     }
 
     public void deleteAll(){
-        List<Employee> entityList = findAll();
-        for (Employee entity : entityList) {
+        List<Author> entityList = findAll();
+        for (Author entity : entityList) {
             delete(entity);
         }
     }
-
 }

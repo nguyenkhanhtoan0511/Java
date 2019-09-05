@@ -1,6 +1,5 @@
 package com.nokia.hibernate.service;
 
-import com.nokia.hibernate.dao.EmployeeDAO;
 import com.nokia.hibernate.dao.impl.EmployeeDAOImpl;
 import com.nokia.hibernate.entity.Employee;
 

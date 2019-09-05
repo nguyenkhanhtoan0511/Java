@@ -1,13 +1,21 @@
 package com.nokia.hibernate;
 
+import com.nokia.hibernate.dao.impl.EmployeeDAOImpl;
 import com.nokia.hibernate.entity.Employee;
 import com.nokia.hibernate.service.EmployeeService;
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.hibernate.Session;
+
+
 
 import java.util.List;
 
 public class TestEmployee {
     public static void main(String[] args) {
         EmployeeService employeeService = new EmployeeService();
+//        EmployeeDAOImpl employeeDAOImpl = new EmployeeDAOImpl();
+
 
 //        employeeService.deleteAll();
 
@@ -30,8 +38,11 @@ public class TestEmployee {
         }
 
         Employee employeeId1 = employeeService.findById(27);
-        System.out.println("Employee id 1: ");
-        System.out.println(employeeId1.toString());
+        if(employeeId1 != null){
+            System.out.println("Employee id 1: ");
+            System.out.println(employeeId1.toString());
+
+        }
 
         Employee employeeId28 = employeeService.findById(28);
         System.out.println(employeeId28);
@@ -48,10 +59,13 @@ public class TestEmployee {
         }
 
         Employee employeeId31 = employeeService.findById(31);
-        employeeId31.setLastName("update");
-        employeeId31.setFirstName("employee 31");
-        employeeId31.setSalary(33333);
-        employeeService.update(employeeId31);
+        if(employeeId31 != null){
+            employeeId31.setLastName("update");
+            employeeId31.setFirstName("employee 31");
+            employeeId31.setSalary(33333);
+            employeeService.update(employeeId31);
+        }
+
 
         System.out.println("List employees: ");
         List<Employee> listEmployees2 = employeeService.findAll();

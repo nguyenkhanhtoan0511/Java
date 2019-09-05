@@ -12,5 +12,7 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
         <mapping class="com.nokia.hibernate.entity.Employee"></mapping>
+        <mapping class="com.nokia.hibernate.entity.Book"></mapping>
+        <mapping class="com.nokia.hibernate.entity.Author"></mapping>
     </session-factory>
 </hibernate-configuration>

@@ -1,17 +1,19 @@
 package com.nokia.hibernate.dao.impl;
 
-import com.nokia.hibernate.dao.EmployeeDAO;
-import com.nokia.hibernate.entity.Employee;
+import com.nokia.hibernate.dao.BookDAO;
+import com.nokia.hibernate.entity.Book;
+
 import com.nokia.hibernate.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.util.List;
 
-public class EmployeeDAOImpl implements EmployeeDAO {
+public class BookDAOImpl implements BookDAO {
+
     private Session currentSession;
 
-    public EmployeeDAOImpl(){
+    public BookDAOImpl(){
     }
 
     public Session openCurrentSession(){
@@ -43,71 +45,69 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> findAll() {
+    public List<Book> findAll() {
         try {
-            Query query = getCurrentSession().createQuery("from Employee");
-            List<Employee> employees = query.list();
-            return employees;
+            Query query = getCurrentSession().createQuery("from Book");
+            List<Book> books = query.list();
+            return books;
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public Employee getEmployee(String firstName, String lastName) {
+    public Book getBook(String title) {
         try {
-            Query query = getCurrentSession().createQuery("from Employee where first_name = :firstName and last_name = :lastName");
-            query.setParameter("firstName", firstName);
-            query.setParameter("lastName", lastName);
-            List<Employee> models = query.list();
-            return (models != null && models.size() > 0 ) ? (Employee) models.get(0) : null;
+            Query query = getCurrentSession().createQuery("from Book where title = :title");
+            query.setParameter("title", title);
+            List<Book> models = query.list();
+            return (models != null && models.size() > 0 ) ? (Book) models.get(0) : null;
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public void add(Employee employee) {
+    public void add(Book book) {
         try {
-            getCurrentSession().save(employee);
+            getCurrentSession().save(book);
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public void update(Employee employee) {
+    public void update(Book book) {
         try {
-            getCurrentSession().update(employee);
+            getCurrentSession().update(book);
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public Employee findById(int id){
+    public Book findById(long id){
         try {
-            Employee employee = (Employee) getCurrentSession().get(Employee.class, id);
-            return  employee;
+            Book book = (Book) getCurrentSession().get(Book.class, id);
+            return  book;
         } catch (Throwable e) {
             throw e;
         }
     }
 
     @Override
-    public void delete(Employee employee) {
+    public void delete(Book book) {
         try {
-            getCurrentSession().delete(employee);
+            getCurrentSession().delete(book);
         } catch (Throwable e) {
             throw e;
         }
     }
 
     public void deleteAll(){
-        List<Employee> entityList = findAll();
-        for (Employee entity : entityList) {
+        List<Book> entityList = findAll();
+        for (Book entity : entityList) {
             delete(entity);
         }
     }
-
 }
