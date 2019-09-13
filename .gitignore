@@ -3,4 +3,7 @@
 
 .idea/
 
+karaf/
+karaf_bundle/
+
 *.iml

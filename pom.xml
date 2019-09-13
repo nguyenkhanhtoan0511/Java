@@ -9,11 +9,11 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-
         <module>docker_app</module>
-        <module>hibernate</module>
-        <module>hibernate_example</module>
         <module>hibernate_project</module>
+        <module>karaf</module>
+        <module>karaf_bundle</module>
+        <module>karaf_rest</module>
     </modules>
 
     <properties>
