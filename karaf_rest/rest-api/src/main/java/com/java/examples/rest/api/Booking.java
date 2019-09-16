@@ -29,4 +29,10 @@ public class Booking {
     public void setFlight(String flight) {
         this.flight = flight;
     }
+
+    public Booking(long id, String customer, String flight) {
+        this.id = id;
+        this.customer = customer;
+        this.flight = flight;
+    }
 }
